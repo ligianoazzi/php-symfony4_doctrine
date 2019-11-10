@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cadastrar Cliente - {% endblock %}
+
+{% block body %}
+    <h1>Cadastrar Cliente</h1>
+    <hr>
+    {{ form_start(form) }}
+
+        <div class="form-group row">
+            <div class="col-md-6">
+                {{ form_label(form.nome) }}
+                {{ form_widget(form.nome) }}
+                {{ form_errors(form.nome) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_label(form.endereco.rua) }}
+                {{ form_widget(form.endereco.rua) }}
+                {{ form_errors(form.endereco.rua) }}
+            </div>
+
+        </div>
+        {{ form_widget(form.salvar) }}
+{% endblock %}

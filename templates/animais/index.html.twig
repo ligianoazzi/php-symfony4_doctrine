@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Listagem de Animais - {% endblock %}
+
+{% block body %}
+
+{% for flassMessage in app.session.flashbag.get('success')%}
+  <div class="alert alert-success">
+    {{ flassMessage }}
+  </div>
+{% endfor %}
+
+{% for flassMessage in app.session.flashbag.get('warning')%}
+  <div class="alert alert-warning">
+    {{ flassMessage }}
+  </div>
+{% endfor %}
+
+{% for flassMessage in app.session.flashbag.get('danger')%}
+  <div class="alert alert-danger">
+    {{ flassMessage }}
+  </div>
+{% endfor %}
+
+    <h1>Listagem de animais</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{{ path('cadastrar_animal') }}" class="btn btn-primary">Cadastrar Animal</a>
+        </div>
+    </div>
+    <table class="table table-hover table-striped mt-3">
+        <thead>
+        <tr>
+            <th>Cod.</th>
+            <th>Nome</th>
+            <th>Data Nasc.</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for animal in animais %}
+        <tr>
+            <td>{{ animal.id }}</td>
+            <td><a href="{{ path('visualizar_animal', {'id': animal.id}) }}">{{ animal.nome }}</a></td>
+            <td>{{ animal.dataNascimento|date("d/m/Y") }}</td>
+        </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Nenhum registro encontrado!</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}
